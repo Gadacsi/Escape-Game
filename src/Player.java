@@ -149,10 +149,19 @@ public class Player extends Entity {
         if (!collision) {
             switch (wasd.direction) {
                 case 'W', 'D', 'A', 'S' -> {
-                    this.setHunger(this.getHunger() - 1);
-                    this.playerHungerBar.setValue(this.getHunger());
-                    this.setThirst(this.getThirst() - 2);
-                    this.playerThirstBar.setValue(this.getThirst());
+
+                    if (this.getHunger() < 1 && this.getThirst() < 1) {
+                        this.setHealth(this.getHealth() - 10);
+                        this.playerHealthBar.setValue(this.getHealth());
+                        if (this.getHealth() == 0)
+                            gamePanel.gameOver = true;
+                    } else {
+                        this.setHunger(this.getHunger() - 1);
+                        this.playerHungerBar.setValue(this.getHunger());
+                        this.setThirst(this.getThirst() - 2);
+                        this.playerThirstBar.setValue(this.getThirst());
+                    }
+
                 }
             }
         }

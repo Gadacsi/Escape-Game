@@ -37,12 +37,15 @@ public class GamePanel extends JPanel implements ActionListener {
         super.paintComponent(graphics);
 
         Graphics2D graphics2D = (Graphics2D) graphics;
+        if(!gameOver) {
+            mapManager.drawMap(graphics2D);
 
-        mapManager.drawMap(graphics2D);
+            player.drawPlayer(graphics2D);
 
-        player.drawPlayer(graphics2D);
+            graphics2D.dispose();
+        }
+        else endGame(graphics2D);
 
-        graphics2D.dispose();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -51,13 +54,17 @@ public class GamePanel extends JPanel implements ActionListener {
             player.move();
             player.movementCosts();
         }
-
         repaint();
     }
     public void startGame() {
         gameOver = false;
         timer = new Timer(110, this);
         timer.start();
+    }
+    public void endGame(Graphics2D graphics2D) {
+        setBackground(Color.BLACK);
+
+        timer.stop();
     }
 }
 
