@@ -10,7 +10,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        // instantiating the GameWindow with all its objects
+        // instantiating the GameWindow with all of its objects
     GameWindow game = new GameWindow();
     }
 }

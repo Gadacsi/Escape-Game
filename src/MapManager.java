@@ -35,20 +35,30 @@ public class MapManager {
         mapTiles[2].image = new ImageIcon(getClass().getResource("dirt.png"));
         mapTiles[3] = new MapTile();
         mapTiles[3].image = new ImageIcon(getClass().getResource("water.png"));
+        mapTiles[3].collision = true;
         mapTiles[4] = new MapTile();
         mapTiles[4].image = new ImageIcon(getClass().getResource("playerMale.png"));
         mapTiles[5] = new MapTile();
         mapTiles[5].image = new ImageIcon(getClass().getResource("playerFemale.png"));
         mapTiles[6] = new MapTile();
         mapTiles[6].image = new ImageIcon(getClass().getResource("enemy.png"));
+        mapTiles[7] = new MapTile();
+        mapTiles[7].image = new ImageIcon(getClass().getResource("exit.png"));
+        mapTiles[8] = new MapTile();
+        mapTiles[8].image = new ImageIcon(getClass().getResource("health.png"));
+        mapTiles[8].collision = true;
+        mapTiles[9] = new MapTile();
+        mapTiles[9].image = new ImageIcon(getClass().getResource("wallLight.png"));
+        mapTiles[9].collision = true;
+
 
     }
 
     public void drawMap(Graphics2D graphics2D) {
 
-        int col = 0;
+        int col = 0; // coordinates on the map
         int row = 0;
-        int x = 0;
+        int x = 0; // coordinates on the screen
         int y = 0;
 
         while (row < 25 && col < 49) {

@@ -19,7 +19,8 @@ public class GamePanel extends JPanel implements ActionListener {
     int score; // TODO: 2023-12-13 save score in text file
     WASD wasd = new WASD();
     Timer timer;
-    boolean gameOver = false; // TODO: 2023-12-13 set gameOver screen
+    boolean gameOver = false;// TODO: 2023-12-13 set gameOver screen
+    boolean winGame = false; // TODO: 2023-12-15 set winGame screen
     Enemy enemy = new Enemy();
     Player player = new Player(wasd, this);
     MapManager mapManager = new MapManager();
@@ -44,14 +45,19 @@ public class GamePanel extends JPanel implements ActionListener {
 
             graphics2D.dispose();
         }
-        else endGame(graphics2D);
+        else
+            if(!winGame)
+                loseGame(graphics2D);
+            else
+                winGame(graphics2D);
 
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!gameOver) {
-
+            player.checkForItem();
             player.move();
+
             player.movementCosts();
         }
         repaint();
@@ -61,8 +67,13 @@ public class GamePanel extends JPanel implements ActionListener {
         timer = new Timer(110, this);
         timer.start();
     }
-    public void endGame(Graphics2D graphics2D) {
+    public void loseGame(Graphics2D graphics2D) {
         setBackground(Color.BLACK);
+
+        timer.stop();
+    }
+    public void winGame(Graphics2D graphics2D) {
+        setBackground(Color.PINK);
 
         timer.stop();
     }

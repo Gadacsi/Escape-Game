@@ -43,7 +43,7 @@ public class Player extends Entity {
      */
     public void setStartingLocation() {
         mapX = 80;
-        mapY = 384;
+        mapY = 368;
     }
 
     /**
@@ -149,7 +149,6 @@ public class Player extends Entity {
         if (!collision) {
             switch (wasd.direction) {
                 case 'W', 'D', 'A', 'S' -> {
-
                     if (this.getHunger() < 1 && this.getThirst() < 1) {
                         this.setHealth(this.getHealth() - 10);
                         this.playerHealthBar.setValue(this.getHealth());
@@ -196,6 +195,65 @@ public class Player extends Entity {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX + 16) / 16];
                 if (gamePanel.mapManager.mapTiles[tile].collision)
                     collision = true;
+            }
+        }
+    }
+
+    public void checkForItem() {
+        int tile;
+        switch (wasd.direction) {
+            // TODO: 2023-12-15 figure out why this is not working
+            case 'W' -> {
+                tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];
+                // getting location of tile in direction of next step
+                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+                    this.setHealth(100);
+                    this.playerHealthBar.setValue(this.getHealth());
+                } else
+                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+                        this.setThirst(100);
+                        this.playerThirstBar.setValue(this.getThirst());
+                    } else
+                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
+                        gamePanel.winGame = true;
+                        gamePanel.gameOver = true;
+                    }
+            }
+            case 'A' -> {
+                tile = gamePanel.mapManager.map[mapY / 16][(mapX - 16) / 16];
+                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+                    this.setHealth(100);
+                    this.playerHealthBar.setValue(this.getHealth());
+                } else {
+                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+                        this.setThirst(100);
+                        this.playerThirstBar.setValue(this.getThirst());
+                    }
+                }
+            }
+            case 'S' -> {
+                tile = gamePanel.mapManager.map[(mapY + 16) / 16][mapX / 16];
+                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+                    this.setHealth(100);
+                    this.playerHealthBar.setValue(this.getHealth());
+                } else {
+                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+                        this.setThirst(100);
+                        this.playerThirstBar.setValue(this.getThirst());
+                    }
+                }
+            }
+            case 'D' -> {
+                tile = gamePanel.mapManager.map[mapY / 16][(mapX + 16) / 16];
+                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+                    this.setHealth(100);
+                    this.playerHealthBar.setValue(this.getHealth());
+                } else {
+                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+                        this.setThirst(100);
+                        this.playerThirstBar.setValue(this.getThirst());
+                    }
+                }
             }
         }
     }
