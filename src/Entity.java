@@ -21,6 +21,7 @@ public abstract class Entity {
     private int health; // the amount of damage the character can take
     private int hunger;
     private int thirst;
+    private int stepsTaken; // TODO: 2023-12-16 save score to text file
 
     /**
      * methods to set the instance variables
@@ -54,5 +55,11 @@ public abstract class Entity {
     }
     public int getThirst() {
         return this.thirst;
+    }
+    public void setStepsTaken(int stepsTaken) {
+        this.stepsTaken = stepsTaken;
+    }
+    public int getStepsTaken() {
+        return this.stepsTaken;
     }
 }

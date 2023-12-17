@@ -149,6 +149,7 @@ public class Player extends Entity {
         if (!collision) {
             switch (wasd.direction) {
                 case 'W', 'D', 'A', 'S' -> {
+                    this.setStepsTaken(getStepsTaken() + 1);
                     if (this.getHunger() < 1 && this.getThirst() < 1) {
                         this.setHealth(this.getHealth() - 10);
                         this.playerHealthBar.setValue(this.getHealth());
@@ -199,10 +200,12 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * checking for items to interact with
+     */
     public void checkForItem() {
         int tile;
         switch (wasd.direction) {
-            // TODO: 2023-12-15 figure out why this is not working
             case 'W' -> {
                 tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];
                 // getting location of tile in direction of next step
@@ -261,7 +264,6 @@ public class Player extends Entity {
     /**
      * draw player according to map location and player image size
      */
-
     public void drawPlayer(Graphics2D graphics2D) {
         graphics2D.drawImage(getPlayerIcon().getImage(), mapX, mapY, 16, 16, null);
     }

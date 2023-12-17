@@ -18,9 +18,8 @@ public class GameWindow extends JFrame {
     ImageIcon logo = new ImageIcon("./res/logo.png"); // icon for main screen corner image
     GamePanel gamePanel; // where movement will take place
     CommentsPanel commentsPanel; // where actions will be listed
-    InformationPanel informationPanel; // information of objects on screen
-    ButtonsPanel buttonsPanel; // game buttons layout screen
-
+    PlayerPanel PlayerPanel; // information of objects on screen
+    InformationPanel informationPanel; // game buttons layout screen
     /**
      * GameWindow constructor
      */
@@ -33,22 +32,22 @@ public class GameWindow extends JFrame {
         setLayout(null); // removing default LayoutManager
 
         // instantiating the panels
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(this);
         commentsPanel = new CommentsPanel();
-        informationPanel = new InformationPanel();
-        buttonsPanel = new ButtonsPanel();
-        // adding health bar and character images to informationPanel
-        informationPanel.add(gamePanel.player.playerLabel());
-        informationPanel.add(gamePanel.player.getPlayerHealthBar());
-        informationPanel.add(gamePanel.player.getPlayerHungerBar());
-        informationPanel.add(gamePanel.player.getPlayerThirstBar());
-        informationPanel.add(gamePanel.enemy.enemyLabel());
-        informationPanel.add(gamePanel.enemy.enemyHealth());
+        PlayerPanel = new PlayerPanel();
+        informationPanel = new InformationPanel(gamePanel.player);
+        // adding health bar and character images to PlayerPanel
+        PlayerPanel.add(gamePanel.player.playerLabel());
+        PlayerPanel.add(gamePanel.player.getPlayerHealthBar());
+        PlayerPanel.add(gamePanel.player.getPlayerHungerBar());
+        PlayerPanel.add(gamePanel.player.getPlayerThirstBar());
+        PlayerPanel.add(gamePanel.enemy.enemyLabel());
+        PlayerPanel.add(gamePanel.enemy.enemyHealth());
         // adding panels to GameWindow (JFrame)
         add(gamePanel);
         add(commentsPanel);
+        add(PlayerPanel);
         add(informationPanel);
-        add(buttonsPanel);
         // making GamePanel visible
         setVisible(true);
         // making the X close the game
