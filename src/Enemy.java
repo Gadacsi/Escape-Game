@@ -17,7 +17,7 @@ public class Enemy extends Entity {
     JLabel enemyLabel; //
     JProgressBar enemyHealth;
     Enemy() {
-        imageIcon = new ImageIcon(getClass().getResource("enemy.png"));
+        imageIcon = new ImageIcon(getClass().getResource("images/enemy.png"));
         setLabel('E');
         setStrength(100);
         setHealth(100);

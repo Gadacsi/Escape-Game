@@ -50,8 +50,8 @@ public class Player extends Entity {
      * JOptionPane popup for selection character image
      */
     public ImageIcon selectCharacter() {
-        ImageIcon playerIconMale = new ImageIcon(getClass().getResource("playerMale.png"));
-        ImageIcon playerIconFemale = new ImageIcon(getClass().getResource("playerFemale.png"));
+        ImageIcon playerIconMale = new ImageIcon(getClass().getResource("images/playerMale.png"));
+        ImageIcon playerIconFemale = new ImageIcon(getClass().getResource("images/playerFemale.png"));
         String[] characterOption = {"Male", "Female"};
         int choice = JOptionPane.showOptionDialog(null,
                 "Pick a character",
@@ -96,7 +96,7 @@ public class Player extends Entity {
         playerHungerBar = new JProgressBar();
         playerHungerBar.setBounds(150, 20, 150, 20);
         playerHungerBar.setStringPainted(true);
-        playerHungerBar.setForeground(new Color(9, 40, 82));
+        playerHungerBar.setForeground(new Color(51, 32, 22));
         playerHungerBar.setString("Hunger %");
         playerHungerBar.setValue(this.getHunger());
         return playerHungerBar;
@@ -149,6 +149,7 @@ public class Player extends Entity {
         if (!collision) {
             switch (wasd.direction) {
                 case 'W', 'D', 'A', 'S' -> {
+                    gamePanel.playSound(0);
                     this.setStepsTaken(getStepsTaken() + 1);
                     if (this.getHunger() < 1 && this.getThirst() < 1) {
                         this.setHealth(this.getHealth() - 10);
@@ -170,7 +171,6 @@ public class Player extends Entity {
     /**
      * method to check if location is safe to walk onto
      */
-
     public void checkCollision() {
         int tile;
         switch (wasd.direction) {
@@ -210,17 +210,19 @@ public class Player extends Entity {
                 tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];
                 // getting location of tile in direction of next step
                 if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+                    gamePanel.playSound(2);
                     this.setHealth(100);
                     this.playerHealthBar.setValue(this.getHealth());
                 } else
                     if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+                        gamePanel.playSound(3);
                         this.setThirst(100);
                         this.playerThirstBar.setValue(this.getThirst());
                     } else
-                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
-                        gamePanel.winGame = true;
-                        gamePanel.gameOver = true;
-                    }
+                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
+                            gamePanel.winGame = true;
+                            gamePanel.gameOver = true;
+                        }
             }
             case 'A' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX - 16) / 16];

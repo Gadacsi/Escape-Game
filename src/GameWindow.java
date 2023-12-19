@@ -10,7 +10,8 @@
 import javax.swing.*;
 
 /**
- * main game window house all the containers extending JFrame
+ * main game-window for all the containers
+ * extends JFrame
  */
 public class GameWindow extends JFrame {
     final int FRAME_WIDTH = 800; // main screen width
