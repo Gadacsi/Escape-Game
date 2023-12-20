@@ -209,56 +209,169 @@ public class Player extends Entity {
             case 'W' -> {
                 tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];
                 // getting location of tile in direction of next step
-                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-                    gamePanel.playSound(2);
-                    this.setHealth(100);
-                    this.playerHealthBar.setValue(this.getHealth());
-                } else
-                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+
+                switch (gamePanel.mapManager.mapTiles[tile].name) {
+                    case "health" -> {
+                        gamePanel.playSound(2);
+                        this.setHealth(100);
+                        this.playerHealthBar.setValue(this.getHealth());
+                    }
+                    case "water", "well" -> {
                         gamePanel.playSound(3);
                         this.setThirst(100);
                         this.playerThirstBar.setValue(this.getThirst());
-                    } else
-                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
-                            gamePanel.winGame = true;
-                            gamePanel.gameOver = true;
-                        }
+                    }
+                    case "treeTop", "treeBottom" -> {
+                        gamePanel.playSound(5);
+                        this.setHunger(100);
+                        this.playerHungerBar.setValue(this.getHunger());
+                    }
+                    case "exit" -> {
+                        gamePanel.winGame = true;
+                        gamePanel.gameOver = true;
+                    }
+                }
+
+//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+//                    gamePanel.playSound(2);
+//                    this.setHealth(100);
+//                    this.playerHealthBar.setValue(this.getHealth());
+//                } else
+//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
+//                        gamePanel.playSound(3);
+//                        this.setThirst(100);
+//                        this.playerThirstBar.setValue(this.getThirst());
+//                    } else
+//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
+//                            gamePanel.playSound(5);
+//                            this.setHunger(100);
+//                            this.playerHungerBar.setValue(this.getHunger());
+//                        } else
+//                            if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
+//                                gamePanel.winGame = true;
+//                                gamePanel.gameOver = true;
+//                            }
             }
             case 'A' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX - 16) / 16];
-                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-                    this.setHealth(100);
-                    this.playerHealthBar.setValue(this.getHealth());
-                } else {
-                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+
+                switch (gamePanel.mapManager.mapTiles[tile].name) {
+                    case "health" -> {
+                        gamePanel.playSound(2);
+                        this.setHealth(100);
+                        this.playerHealthBar.setValue(this.getHealth());
+                    }
+                    case "water", "well" -> {
+                        gamePanel.playSound(3);
                         this.setThirst(100);
                         this.playerThirstBar.setValue(this.getThirst());
                     }
+                    case "treeTop", "treeBottom" -> {
+                        gamePanel.playSound(5);
+                        this.setHunger(100);
+                        this.playerHungerBar.setValue(this.getHunger());
+                    }
+                    case "exit" -> {
+                        gamePanel.winGame = true;
+                        gamePanel.gameOver = true;
+                    }
                 }
+
+//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+//                    this.setHealth(100);
+//                    this.playerHealthBar.setValue(this.getHealth());
+//                } else {
+//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
+//                        gamePanel.playSound(3);
+//                        this.setThirst(100);
+//                        this.playerThirstBar.setValue(this.getThirst());
+//                    } else
+//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
+//                            gamePanel.playSound(5);
+//                            this.setHunger(100);
+//                            this.playerHungerBar.setValue(this.getHunger());
+//                        }
+//                }
             }
             case 'S' -> {
                 tile = gamePanel.mapManager.map[(mapY + 16) / 16][mapX / 16];
-                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-                    this.setHealth(100);
-                    this.playerHealthBar.setValue(this.getHealth());
-                } else {
-                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+
+                switch (gamePanel.mapManager.mapTiles[tile].name) {
+                    case "health" -> {
+                        gamePanel.playSound(2);
+                        this.setHealth(100);
+                        this.playerHealthBar.setValue(this.getHealth());
+                    }
+                    case "water", "well" -> {
+                        gamePanel.playSound(3);
                         this.setThirst(100);
                         this.playerThirstBar.setValue(this.getThirst());
                     }
+                    case "treeTop", "treeBottom" -> {
+                        gamePanel.playSound(5);
+                        this.setHunger(100);
+                        this.playerHungerBar.setValue(this.getHunger());
+                    }
+                    case "exit" -> {
+                        gamePanel.winGame = true;
+                        gamePanel.gameOver = true;
+                    }
                 }
+//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+//                    this.setHealth(100);
+//                    this.playerHealthBar.setValue(this.getHealth());
+//                } else {
+//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
+//                        gamePanel.playSound(3);
+//                        this.setThirst(100);
+//                        this.playerThirstBar.setValue(this.getThirst());
+//                    } else
+//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
+//                            gamePanel.playSound(5);
+//                            this.setHunger(100);
+//                            this.playerHungerBar.setValue(this.getHunger());
+//                        }
+//                }
             }
             case 'D' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX + 16) / 16];
-                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-                    this.setHealth(100);
-                    this.playerHealthBar.setValue(this.getHealth());
-                } else {
-                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3]) {
+
+                switch (gamePanel.mapManager.mapTiles[tile].name) {
+                    case "health" -> {
+                        gamePanel.playSound(2);
+                        this.setHealth(100);
+                        this.playerHealthBar.setValue(this.getHealth());
+                    }
+                    case "water", "well" -> {
+                        gamePanel.playSound(3);
                         this.setThirst(100);
                         this.playerThirstBar.setValue(this.getThirst());
                     }
+                    case "treeTop", "treeBottom" -> {
+                        gamePanel.playSound(5);
+                        this.setHunger(100);
+                        this.playerHungerBar.setValue(this.getHunger());
+                    }
+                    case "exit" -> {
+                        gamePanel.winGame = true;
+                        gamePanel.gameOver = true;
+                    }
                 }
+//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
+//                    this.setHealth(100);
+//                    this.playerHealthBar.setValue(this.getHealth());
+//                } else {
+//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
+//                        gamePanel.playSound(3);
+//                        this.setThirst(100);
+//                        this.playerThirstBar.setValue(this.getThirst());
+//                    } else
+//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
+//                            gamePanel.playSound(5);
+//                            this.setHunger(100);
+//                            this.playerHungerBar.setValue(this.getHunger());
+//                        }
+//                }
             }
         }
     }

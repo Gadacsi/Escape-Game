@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Sound class constructor
@@ -17,6 +18,7 @@ import java.net.URL;
 public class Sound {
     Clip clip;
     URL[] soundURL = new URL[10];
+    ArrayList<String> soundNames = new ArrayList<>();
 
     /**
      * Array holding the different sounds
@@ -24,9 +26,18 @@ public class Sound {
     public Sound() {
         soundURL[0] = getClass().getResource("sounds/step.wav");
         soundURL[1] = getClass().getResource("sounds/failed.wav");
-        soundURL[2] = getClass().getResource("sounds/health.wav");
+        soundURL[2] = getClass().getResource("sounds/gettingHealth.wav");
         soundURL[3] = getClass().getResource("sounds/gettingWater.wav");
+        soundURL[4] = getClass().getResource("sounds/escaped.wav");
+        soundURL[5] = getClass().getResource("sounds/eating.wav");
+        soundNames.add(0, "step");
+        soundNames.add(1, "failed");
+        soundNames.add(2, "gettingHealth");
+        soundNames.add(3, "gettingWater");
+        soundNames.add(4, "escaped");
+        soundNames.add(5, "eating");
     }
+
 
     /**
      * setting up the sound stream

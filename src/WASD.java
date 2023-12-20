@@ -10,6 +10,9 @@
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * keyboard event listener
+ */
 public class WASD extends KeyAdapter {
     char direction;
 

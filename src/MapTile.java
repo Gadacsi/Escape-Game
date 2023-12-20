@@ -11,5 +11,6 @@ import javax.swing.*;
 
 public class MapTile {
     public ImageIcon image;
+    public String name;
     public boolean collision = false;
 }

@@ -16,7 +16,7 @@ import javax.swing.*;
 public class GameWindow extends JFrame {
     final int FRAME_WIDTH = 800; // main screen width
     final int FRAME_HEIGHT = 600; // main screen height
-    ImageIcon logo = new ImageIcon("./res/logo.png"); // icon for main screen corner image
+    ImageIcon logo = new ImageIcon("./res/images/logo.png"); // icon for main screen corner image
     GamePanel gamePanel; // where movement will take place
     CommentsPanel commentsPanel; // where actions will be listed
     PlayerPanel PlayerPanel; // information of objects on screen

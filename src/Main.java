@@ -7,6 +7,9 @@
  * version 2.0
  **/
 
+/**
+ * Main class to start the game
+ */
 public class Main {
 
     public static void main(String[] args) {

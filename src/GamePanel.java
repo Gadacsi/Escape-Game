@@ -112,6 +112,7 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     public void winGame(Graphics2D graphics2D) {
         saveGame();
+        playSound(4);
         setBackground(new Color(3,44,252));
         graphics2D.setColor(new Color(215,211,227));
         graphics2D.setFont(new Font("Footlight MT Light", Font.BOLD, 50));
