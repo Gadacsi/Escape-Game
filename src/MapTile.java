@@ -9,6 +9,9 @@
 
 import javax.swing.*;
 
+/**
+ * a class to create map tiles
+ */
 public class MapTile {
     public ImageIcon image;
     public String name;

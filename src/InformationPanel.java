@@ -1,7 +1,17 @@
+/**
+ * @author Kristof
+ * Java Intermediate
+ * Final Assignment(5)
+ * December 19th 2023
+ * Escape Game
+ * version 2.0
+ **/
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 
+/**
+ * a JPanel used to show keys to move character and scoreboard
+ */
 public class InformationPanel extends JPanel {
     JLabel movement;
     JLabel scoreboard;

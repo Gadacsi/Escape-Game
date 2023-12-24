@@ -16,11 +16,13 @@ import java.awt.*;
  */
 public class CommentsPanel extends JPanel {
 
-    // TODO: 2023-12-13 add all actions written onto screen
-
     JLabel label1;
     JLabel label2;
 
+
+    /**
+     * a JPanel to be used for text information of onscreen events
+     */
     CommentsPanel() {
         setBorder(BorderFactory.createEtchedBorder(1));
 
@@ -29,7 +31,7 @@ public class CommentsPanel extends JPanel {
         label1.setBounds(4, 3, 294, 50);
         label1.setForeground(Color.WHITE);
         label1.setHorizontalAlignment(SwingConstants.CENTER);
-        label1.setText("");
+        label1.setText("Escape Game");
         label1.setFont(new Font("Dialog", Font.PLAIN, 15));
 
         label2 = new JLabel();
@@ -37,7 +39,7 @@ public class CommentsPanel extends JPanel {
         label2.setBounds(4, 107, 294, 50);
         label2.setForeground(Color.WHITE);
         label2.setHorizontalAlignment(SwingConstants.CENTER);
-        label2.setText("");
+        label2.setText(""); // TODO: 2023-12-13 add all actions written onto screen
         label2.setFont(new Font("Dialog", Font.PLAIN, 25));
 
 

@@ -10,6 +10,8 @@
 import javax.swing.*;
 import java.awt.*;
 
+// TODO: 2023-12-19 add enemy to game
+
 /**
  * enemy in the game
  */

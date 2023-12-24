@@ -22,6 +22,7 @@ public class Sound {
 
     /**
      * Array holding the different sounds
+     * ArrayList holding the names of the sounds
      */
     public Sound() {
         soundURL[0] = getClass().getResource("sounds/step.wav");
@@ -36,6 +37,10 @@ public class Sound {
         soundNames.add(3, "gettingWater");
         soundNames.add(4, "escaped");
         soundNames.add(5, "eating");
+        soundNames.forEach( // forEach loop :)
+                (names)->System.out.println(names) // lambda expression :)
+        );
+
     }
 
 
@@ -60,7 +65,7 @@ public class Sound {
     }
 
     /**
-     * used to play music / sounds the need looping
+     * used to play music / sounds that need looping
      */
     public void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);

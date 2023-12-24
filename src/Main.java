@@ -10,6 +10,8 @@
 /**
  * Main class to start the game
  */
+
+// TODO: 2023-12-19 add items, weapons, and other objects to game
 public class Main {
 
     public static void main(String[] args) {
