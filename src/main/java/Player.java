@@ -203,8 +203,6 @@ public class Player extends Entity {
     /**
      * checking for items to interact with
      */ // TODO: 2023-12-29 make a better item  checker
-
-    //testing
     public void checkForItem() {
         int tile;
         switch (wasd.direction) {
