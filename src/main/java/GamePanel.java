@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener {
      */
     GamePanel(GameWindow gameWindow) {
         this.gameWindow = gameWindow;
-        setBackground(Color.GRAY);
+//        setBackground(Color.GRAY);
         setBounds(0, 0, PANEL_WIDTH, PANEL_HEIGHT);
         setFocusable(true);
         addKeyListener(wasd);

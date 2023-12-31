@@ -20,7 +20,7 @@ public class MapManager {
 
     public MapManager() {
         map = gameMap.getMap();
-        mapTiles = new MapTile[15];
+        mapTiles = new MapTile[20];
         getMapTileImage();
     }
 
@@ -77,6 +77,10 @@ public class MapManager {
         mapTiles[14].name = "treeBottom";
         mapTiles[14].image = new ImageIcon(getClass().getResource("images/treeBottom.png"));
         mapTiles[14].collision = true;
+        mapTiles[15] = new MapTile();
+        mapTiles[15].name = "backpack";
+        mapTiles[15].image = new ImageIcon(getClass().getResource("images/backpack.png"));
+        mapTiles[15].collision = true;
 
 
 

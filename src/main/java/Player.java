@@ -231,26 +231,6 @@ public class Player extends Entity {
                         gamePanel.gameOver = true;
                     }
                 }
-
-//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-//                    gamePanel.playSound(2);
-//                    this.setHealth(100);
-//                    this.playerHealthBar.setValue(this.getHealth());
-//                } else
-//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
-//                        gamePanel.playSound(3);
-//                        this.setThirst(100);
-//                        this.playerThirstBar.setValue(this.getThirst());
-//                    } else
-//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
-//                            gamePanel.playSound(5);
-//                            this.setHunger(100);
-//                            this.playerHungerBar.setValue(this.getHunger());
-//                        } else
-//                            if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[7]) {
-//                                gamePanel.winGame = true;
-//                                gamePanel.gameOver = true;
-//                            }
             }
             case 'A' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX - 16) / 16];
@@ -276,22 +256,6 @@ public class Player extends Entity {
                         gamePanel.gameOver = true;
                     }
                 }
-
-//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-//                    this.setHealth(100);
-//                    this.playerHealthBar.setValue(this.getHealth());
-//                } else {
-//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
-//                        gamePanel.playSound(3);
-//                        this.setThirst(100);
-//                        this.playerThirstBar.setValue(this.getThirst());
-//                    } else
-//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
-//                            gamePanel.playSound(5);
-//                            this.setHunger(100);
-//                            this.playerHungerBar.setValue(this.getHunger());
-//                        }
-//                }
             }
             case 'S' -> {
                 tile = gamePanel.mapManager.map[(mapY + 16) / 16][mapX / 16];
@@ -317,21 +281,6 @@ public class Player extends Entity {
                         gamePanel.gameOver = true;
                     }
                 }
-//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-//                    this.setHealth(100);
-//                    this.playerHealthBar.setValue(this.getHealth());
-//                } else {
-//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
-//                        gamePanel.playSound(3);
-//                        this.setThirst(100);
-//                        this.playerThirstBar.setValue(this.getThirst());
-//                    } else
-//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
-//                            gamePanel.playSound(5);
-//                            this.setHunger(100);
-//                            this.playerHungerBar.setValue(this.getHunger());
-//                        }
-//                }
             }
             case 'D' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX + 16) / 16];
@@ -357,21 +306,6 @@ public class Player extends Entity {
                         gamePanel.gameOver = true;
                     }
                 }
-//                if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[8]) {
-//                    this.setHealth(100);
-//                    this.playerHealthBar.setValue(this.getHealth());
-//                } else {
-//                    if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[3] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[10]) {
-//                        gamePanel.playSound(3);
-//                        this.setThirst(100);
-//                        this.playerThirstBar.setValue(this.getThirst());
-//                    } else
-//                        if (gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[13] || gamePanel.mapManager.mapTiles[tile] == gamePanel.mapManager.mapTiles[14]) {
-//                            gamePanel.playSound(5);
-//                            this.setHunger(100);
-//                            this.playerHungerBar.setValue(this.getHunger());
-//                        }
-//                }
             }
         }
     }

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Sound {
     Clip clip;
     URL[] soundURL = new URL[10];
-    ArrayList<String> soundNames = new ArrayList<>();
 
     /**
      * Array holding the different sounds
@@ -31,18 +30,7 @@ public class Sound {
         soundURL[3] = getClass().getResource("sounds/gettingWater.wav");
         soundURL[4] = getClass().getResource("sounds/escaped.wav");
         soundURL[5] = getClass().getResource("sounds/eating.wav");
-        soundNames.add(0, "step");
-        soundNames.add(1, "failed");
-        soundNames.add(2, "gettingHealth");
-        soundNames.add(3, "gettingWater");
-        soundNames.add(4, "escaped");
-        soundNames.add(5, "eating");
-        soundNames.forEach( // forEach loop :)
-                (names)->System.out.println(names) // lambda expression :)
-        );
-
     }
-
 
     /**
      * setting up the sound stream

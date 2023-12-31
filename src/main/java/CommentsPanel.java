@@ -37,7 +37,7 @@ public class CommentsPanel extends JPanel {
         buttons = new JButton[10];
         buttons[0] = new JButton();
         buttons[0].setBounds(4,55,20,20);
-        buttons[0].setIcon(new ImageIcon(getClass().getResource("images/Backpack.png")));
+        buttons[0].setIcon(new ImageIcon(getClass().getResource("images/backpack.png")));
 
 //        label2 = new JLabel();
 //        label2.setBorder(new BevelBorder(BevelBorder.LOWERED));
