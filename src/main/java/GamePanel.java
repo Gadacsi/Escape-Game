@@ -142,7 +142,7 @@ public class GamePanel extends JPanel implements ActionListener {
             System.out.println("Message: " + e);
         }
     }
-
+;
     /**
      * method used to play sound effects
      */
