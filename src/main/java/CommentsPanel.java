@@ -10,6 +10,7 @@
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * button panel for movements
@@ -30,14 +31,24 @@ public class CommentsPanel extends JPanel {
         label1.setBorder(new BevelBorder(BevelBorder.LOWERED));
         label1.setBounds(4, 3, 294, 50);
         label1.setForeground(Color.WHITE);
+        label1.setBackground(new Color(74, 74, 74));
         label1.setHorizontalAlignment(SwingConstants.CENTER);
         label1.setText("Escape Game");
         label1.setFont(new Font("Dialog", Font.PLAIN, 15));
 
         buttons = new JButton[10];
+
         buttons[0] = new JButton();
         buttons[0].setBounds(4,55,20,20);
-        buttons[0].setIcon(new ImageIcon(getClass().getResource("images/backpack.png")));
+        buttons[0].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("items/backpack.png"))));
+        buttons[0].setBackground(new Color(82, 79, 79));
+        buttons[0].setBorder(BorderFactory.createEmptyBorder());
+
+        buttons[1] = new JButton();
+        buttons[1].setBounds(26, 55, 20, 20);
+        buttons[1].setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("items/key.png"))));
+        buttons[1].setBackground(new Color(82, 79, 79));
+        buttons[1].setBorder(BorderFactory.createEmptyBorder());
 
 //        label2 = new JLabel();
 //        label2.setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -50,11 +61,11 @@ public class CommentsPanel extends JPanel {
 
         setLayout(null);
         setBounds(0, 400, 300, 162);
-        setBackground(Color.darkGray);
+        setBackground(new Color(82, 79, 79));
 
         add(label1);
 //        add(label2);
-        add(buttons[0]);
+
 
     }
 }

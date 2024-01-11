@@ -14,12 +14,14 @@ import javax.swing.*;
  * extends JFrame
  */
 public class GameWindow extends JFrame {
-    final int FRAME_WIDTH = 800; // main screen width
-    final int FRAME_HEIGHT = 600; // main screen height
+    final int FRAME_WIDTH = 800; // 1920; // main screen width
+    final int FRAME_HEIGHT = 600; // 1080; // main screen height
+//    final int FRAME_WIDTH = 1920;
+//    final int FRAME_HEIGHT = 1080;
     ImageIcon logo = new ImageIcon("./res/images/logo.png"); // icon for main screen corner image
     GamePanel gamePanel; // where movement will take place
     CommentsPanel commentsPanel; // where actions will be listed
-    PlayerPanel PlayerPanel; // information of objects on screen
+    PlayerPanel playerPanel; // information of objects on screen
     InformationPanel informationPanel; // game buttons layout screen
     /**
      * GameWindow constructor
@@ -35,19 +37,21 @@ public class GameWindow extends JFrame {
         // instantiating the panels
         gamePanel = new GamePanel(this);
         commentsPanel = new CommentsPanel();
-        PlayerPanel = new PlayerPanel();
+        playerPanel = new PlayerPanel();
         informationPanel = new InformationPanel(gamePanel.player);
         // adding health bar and character images to PlayerPanel
-        PlayerPanel.add(gamePanel.player.playerLabel());
-        PlayerPanel.add(gamePanel.player.getPlayerHealthBar());
-        PlayerPanel.add(gamePanel.player.getPlayerHungerBar());
-        PlayerPanel.add(gamePanel.player.getPlayerThirstBar());
-        PlayerPanel.add(gamePanel.enemy.enemyLabel());
-        PlayerPanel.add(gamePanel.enemy.enemyHealth());
+        playerPanel.add(gamePanel.player.getPlayerLabel());
+        playerPanel.add(gamePanel.player.getPlayerHealthBar());
+        playerPanel.add(gamePanel.player.getPlayerHungerBar());
+        playerPanel.add(gamePanel.player.getPlayerThirstBar());
+//        playerPanel.add(gamePanel.enemy.enemyLabel());
+//        playerPanel.add(gamePanel.enemy.enemyHealth());
+
+
         // adding panels to GameWindow (JFrame)
         add(gamePanel);
         add(commentsPanel);
-        add(PlayerPanel);
+        add(playerPanel);
         add(informationPanel);
         // making GamePanel visible
         setVisible(true);

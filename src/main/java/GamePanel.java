@@ -23,6 +23,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
     final int PANEL_WIDTH = 800;
     final int PANEL_HEIGHT = 400;
+//    final int PANEL_WIDTH = 1760; // 54 32x32
+//    final int PANEL_HEIGHT = 896; // 27 32x32
     WASD wasd = new WASD();
     Timer timer;
     boolean gameOver = false;
@@ -31,6 +33,7 @@ public class GamePanel extends JPanel implements ActionListener {
     Player player = new Player(wasd, this);
     Sound sound = new Sound();
     MapManager mapManager = new MapManager();
+    ItemManager itemManager = new ItemManager();
     GameWindow gameWindow;
 
     /**
@@ -56,7 +59,7 @@ public class GamePanel extends JPanel implements ActionListener {
         Graphics2D graphics2D = (Graphics2D) graphics;
         if(!gameOver) {
             mapManager.drawMap(graphics2D);
-
+            itemManager.drawItem(graphics2D);
             player.drawPlayer(graphics2D);
 
             graphics2D.dispose();
@@ -76,6 +79,7 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!gameOver) {
+            player.checkForMapItem();
             player.checkForItem();
             player.move();
             player.movementCosts();

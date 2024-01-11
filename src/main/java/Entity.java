@@ -13,10 +13,10 @@ import javax.swing.*;
  * abstract class to the base of all entities
  */
 public abstract class Entity {
-    public ImageIcon imageIcon; // image of character
+    public ImageIcon[] imageIcons; // image of character
+    public ImageIcon icon;
     public int mapX; // map horizontal location
     public int mapY; // map vertical location
-    private char label; // label for character
     private int strength; // the hit damage caused by character
     private int health; // the amount of damage the character can take
     private int hunger;
@@ -26,12 +26,7 @@ public abstract class Entity {
     /**
      * methods to set the instance variables
      */
-    public void setLabel(char label) {
-        this.label = label;
-    }
-    public char getLabel() {
-        return this.label;
-    }
+
     public void setStrength(int strength) {
         this.strength = strength;
     }

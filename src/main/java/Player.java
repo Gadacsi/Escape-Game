@@ -9,6 +9,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * user in the game
@@ -28,14 +29,14 @@ public class Player extends Entity {
     Player(WASD wasd, GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.wasd = wasd;
-        setLabel('U');
         setStrength(100);
         setHealth(100);
         setHunger(100);
         setThirst(100);
+        makePlayerIcons();
         setPlayerIcon(selectCharacter());
         setStartingLocation();
-        getPlayerHealthBar();
+
     }
 
     /**
@@ -46,12 +47,38 @@ public class Player extends Entity {
         mapY = 368;
     }
 
+    public void makePlayerIcons() {
+        imageIcons = new ImageIcon[10];
+        imageIcons[0] = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/playerMale_plain.png")));
+        imageIcons[1] = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/playerMale_sword.png")));
+    }
+
+    public ImageIcon selectPlayerIcon(int selection) {
+        switch (selection) {
+            case 0 -> {
+                return imageIcons[0];
+            }
+            case 1 -> {
+                return imageIcons[1];
+            }
+        }
+        return imageIcons[selection];
+    }
+
+    public void setPlayerIcon(ImageIcon imageIcon) {
+        this.icon = imageIcon;
+    }
+
+    public ImageIcon getPlayerIcon() {
+        return icon;
+    }
+
     /**
      * JOptionPane popup for selection character image
      */
     public ImageIcon selectCharacter() {
-        ImageIcon playerIconMale = new ImageIcon(getClass().getResource("images/playerMale.png"));
-        ImageIcon playerIconFemale = new ImageIcon(getClass().getResource("images/playerFemale.png"));
+        ImageIcon playerIconMale = selectPlayerIcon(0);
+        ImageIcon playerIconFemale = new ImageIcon(Objects.requireNonNull(getClass().getResource("images/playerFemale.png")));
         String[] characterOption = {"Male", "Female"};
         int choice = JOptionPane.showOptionDialog(null,
                 "Pick a character",
@@ -70,13 +97,6 @@ public class Player extends Entity {
         }
     }
 
-    public void setPlayerIcon(ImageIcon imageIcon) {
-        this.imageIcon = imageIcon;
-    }
-
-    public ImageIcon getPlayerIcon() {
-        return this.imageIcon;
-    }
 
     /**
      * showing player health on screen
@@ -115,7 +135,7 @@ public class Player extends Entity {
     /**
      * setting name of character and showing information
      */
-    public JLabel playerLabel() {
+    public JLabel getPlayerLabel() {
         playerLabel = new JLabel();
         playerLabel.setBounds(0, 0, 150, 60);
         playerLabel.setIcon(getPlayerIcon());
@@ -176,11 +196,11 @@ public class Player extends Entity {
         switch (wasd.direction) {
             case 'W' -> {
                 tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];
-                // getting location of tile on map
                 if (gamePanel.mapManager.mapTiles[tile].collision)
-                    // if location of tile has collision (true)
                     collision = true;
-                // also set player collision to true
+                if ((mapY - 16) == gamePanel.itemManager.itemTiles[3].mapY && mapX == gamePanel.itemManager.itemTiles[3].mapX && gamePanel.itemManager.itemTiles[3].show)
+                    //closed door
+                    collision = true;
             }
             case 'A' -> {
                 tile = gamePanel.mapManager.map[mapY / 16][(mapX - 16) / 16];
@@ -200,11 +220,171 @@ public class Player extends Entity {
         }
     }
 
-    /**
-     * checking for items to interact with
-     */ // TODO: 2023-12-29 make a better item  checker
     public void checkForItem() {
+        String name = "nothing";
+        switch (wasd.direction) {
+            case 'W' -> {
+
+                if ((mapY - 16) == gamePanel.itemManager.itemTiles[0].mapY && mapX == gamePanel.itemManager.itemTiles[0].mapX && gamePanel.itemManager.itemTiles[0].show)
+                    // backpack
+                    name = gamePanel.itemManager.itemTiles[0].name;
+                if ((mapY - 16) == gamePanel.itemManager.itemTiles[1].mapY && mapX == gamePanel.itemManager.itemTiles[1].mapX && gamePanel.itemManager.itemTiles[1].show)
+                    // key
+                    name = gamePanel.itemManager.itemTiles[1].name;
+                if ((mapY - 16) == gamePanel.itemManager.itemTiles[2].mapY && mapX == gamePanel.itemManager.itemTiles[2].mapX && gamePanel.itemManager.itemTiles[2].show)
+                    // sword
+                    name = gamePanel.itemManager.itemTiles[2].name;
+                if ((mapY - 16) == 336 && mapX == 160)
+                    name = "secret light";
+                if ((mapY - 16) == gamePanel.itemManager.itemTiles[3].mapY && mapX == gamePanel.itemManager.itemTiles[3].mapX && gamePanel.itemManager.itemTiles[3].show)
+                    name = "door closed";
+
+                switch (name) {
+                    case "backpack" -> {
+                        gamePanel.itemManager.itemTiles[0].show = false;
+                        gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[0]);
+                        gamePanel.gameWindow.commentsPanel.repaint();
+
+                    }
+                    case "key" -> {
+                        if (!gamePanel.itemManager.itemTiles[0].show) {
+                            gamePanel.itemManager.itemTiles[1].show = false;
+                            gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[1]);
+                            gamePanel.gameWindow.commentsPanel.repaint();
+                        }
+
+                    }
+                    case "sword" -> {
+                        gamePanel.itemManager.itemTiles[2].show = false;
+                        gamePanel.player.setPlayerIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("playerMale_sword.png"))));
+                        gamePanel.gameWindow.playerPanel.repaint();
+                    }
+                    case "secret light" -> gamePanel.mapManager.loadMap(gamePanel.mapManager.maps[1]);
+
+                    case "door closed" -> {
+                        if (gamePanel.gameWindow.commentsPanel.buttons[1].isValid()) {
+                            gamePanel.itemManager.itemTiles[3].show = false;
+                            gamePanel.itemManager.itemTiles[4].show = true;
+                        }
+
+
+                    }
+                }
+            }
+            case 'A' -> {
+
+                if (mapY == gamePanel.itemManager.itemTiles[0].mapY && (mapX - 16) == gamePanel.itemManager.itemTiles[0].mapX && gamePanel.itemManager.itemTiles[0].show)
+                    //backpack
+                    name = gamePanel.itemManager.itemTiles[0].name;
+                if (mapY == gamePanel.itemManager.itemTiles[1].mapY && (mapX - 16) == gamePanel.itemManager.itemTiles[1].mapX && gamePanel.itemManager.itemTiles[1].show)
+                    //key
+                    name = gamePanel.itemManager.itemTiles[1].name;
+                if (mapY == gamePanel.itemManager.itemTiles[2].mapY && (mapX - 16) == gamePanel.itemManager.itemTiles[2].mapX && gamePanel.itemManager.itemTiles[2].show)
+                    //sword
+                    name = gamePanel.itemManager.itemTiles[2].name;
+                if (mapY == 336 && (mapX - 16) == 160)
+                    name = "secret light";
+                if (mapY == gamePanel.itemManager.itemTiles[3].mapY && (mapX - 16) == gamePanel.itemManager.itemTiles[3].mapX && gamePanel.itemManager.itemTiles[3].show)
+                    name = "door closed";
+
+                switch (name) {
+                    case "backpack" -> {
+                        gamePanel.itemManager.itemTiles[0].show = false;
+                        gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[0]);
+                        gamePanel.gameWindow.commentsPanel.repaint();
+
+                    }
+                    case "key" -> {
+                        if (!gamePanel.itemManager.itemTiles[0].show) {
+                            gamePanel.itemManager.itemTiles[1].show = false;
+                            gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[1]);
+                            gamePanel.gameWindow.commentsPanel.repaint();
+                        }
+                    }
+                    case "sword" -> {
+                        gamePanel.itemManager.itemTiles[2].show = false;
+                        gamePanel.player.playerLabel.setIcon(selectPlayerIcon(1));
+                        gamePanel.player.setPlayerIcon(selectPlayerIcon(1));
+                    }
+                }
+            }
+            case 'S' -> {
+
+                if ((mapY + 16) == gamePanel.itemManager.itemTiles[0].mapY && mapX == gamePanel.itemManager.itemTiles[0].mapX && gamePanel.itemManager.itemTiles[0].show)
+                    name = gamePanel.itemManager.itemTiles[0].name;
+                if ((mapY + 16) == gamePanel.itemManager.itemTiles[1].mapY && mapX == gamePanel.itemManager.itemTiles[1].mapX && gamePanel.itemManager.itemTiles[1].show)
+                    name = gamePanel.itemManager.itemTiles[1].name;
+                if ((mapY + 16) == gamePanel.itemManager.itemTiles[2].mapY && mapX == gamePanel.itemManager.itemTiles[2].mapX && gamePanel.itemManager.itemTiles[2].show)
+                    name = gamePanel.itemManager.itemTiles[2].name;
+                if ((mapY + 16) == 336 && mapX == 160)
+                    name = "secret light";
+                if ((mapY + 16) == gamePanel.itemManager.itemTiles[3].mapY && mapX == gamePanel.itemManager.itemTiles[3].mapX && gamePanel.itemManager.itemTiles[3].show)
+                    name = "door closed";
+
+                switch (name) {
+                    case "backpack" -> {
+                        gamePanel.itemManager.itemTiles[0].show = false;
+                        gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[0]);
+                        gamePanel.gameWindow.commentsPanel.repaint();
+
+                    }
+                    case "key" -> {
+                        if (!gamePanel.itemManager.itemTiles[0].show) {
+                            gamePanel.itemManager.itemTiles[1].show = false;
+                            gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[1]);
+                            gamePanel.gameWindow.commentsPanel.repaint();
+                        }
+                    }
+                    case "sword" -> {
+                        gamePanel.itemManager.itemTiles[2].show = false;
+                        gamePanel.player.playerLabel.setIcon(selectPlayerIcon(1));
+                        gamePanel.player.setPlayerIcon(selectPlayerIcon(1));
+                    }
+                }
+            }
+            case 'D' -> {
+
+                if (mapY == gamePanel.itemManager.itemTiles[0].mapY && (mapX + 16) == gamePanel.itemManager.itemTiles[0].mapX && gamePanel.itemManager.itemTiles[0].show)
+                    name = gamePanel.itemManager.itemTiles[0].name;
+                if (mapY == gamePanel.itemManager.itemTiles[1].mapY && (mapX + 16) == gamePanel.itemManager.itemTiles[1].mapX && gamePanel.itemManager.itemTiles[1].show)
+                    name = gamePanel.itemManager.itemTiles[1].name;
+                if (mapY == gamePanel.itemManager.itemTiles[2].mapY && (mapX + 16) == gamePanel.itemManager.itemTiles[2].mapX && gamePanel.itemManager.itemTiles[2].show)
+                    name = gamePanel.itemManager.itemTiles[2].name;
+                if (mapY == 336 && (mapX + 16) == 160)
+                    name = "secret light";
+                if (mapY == gamePanel.itemManager.itemTiles[3].mapY && (mapX + 16) == gamePanel.itemManager.itemTiles[3].mapX && gamePanel.itemManager.itemTiles[3].show)
+                    name = "door closed";
+
+                switch (name) {
+                    case "backpack" -> {
+                        gamePanel.itemManager.itemTiles[0].show = false;
+                        gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[0]);
+                        gamePanel.gameWindow.commentsPanel.repaint();
+
+                    }
+                    case "key" -> {
+                        if (!gamePanel.itemManager.itemTiles[0].show) {
+                            gamePanel.itemManager.itemTiles[1].show = false;
+                            gamePanel.gameWindow.commentsPanel.add(gamePanel.gameWindow.commentsPanel.buttons[1]);
+                            gamePanel.gameWindow.commentsPanel.repaint();
+                        }
+                    }
+                    case "sword" -> {
+                        gamePanel.itemManager.itemTiles[2].show = false;
+                        gamePanel.player.playerLabel.setIcon(selectPlayerIcon(1));
+                        gamePanel.player.setPlayerIcon(selectPlayerIcon(1));
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * checking for map items to interact with
+     */
+    public void checkForMapItem() {
         int tile;
+
         switch (wasd.direction) {
             case 'W' -> {
                 tile = gamePanel.mapManager.map[(mapY - 16) / 16][mapX / 16];

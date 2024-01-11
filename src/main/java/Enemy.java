@@ -19,13 +19,13 @@ public class Enemy extends Entity {
     JLabel enemyLabel; //
     JProgressBar enemyHealth;
     Enemy() {
-        imageIcon = new ImageIcon(getClass().getResource("images/enemy.png"));
-        setLabel('E');
+        icon = new ImageIcon(getClass().getResource("images/enemy.png"));
         setStrength(100);
         setHealth(100);
     }
     public JProgressBar enemyHealth() {
         enemyHealth = new JProgressBar();
+        enemyHealth.setBounds(150, 70, 150 ,60);
         enemyHealth.setStringPainted(true);
         enemyHealth.setForeground(Color.blue);
         enemyHealth.setBackground(Color.black);
@@ -35,8 +35,9 @@ public class Enemy extends Entity {
         return enemyHealth;
     }
     public JLabel enemyLabel() {
-        enemyLabel = new JLabel("Enemy");
-        enemyLabel.setIcon(imageIcon);
+        enemyLabel = new JLabel("enemy");
+        enemyLabel.setBounds(0, 70, 150, 60);
+        enemyLabel.setIcon(icon);
         enemyLabel.setHorizontalAlignment(JLabel.CENTER);
         enemyLabel.setIconTextGap(10);
 
